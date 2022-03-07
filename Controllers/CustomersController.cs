@@ -156,7 +156,7 @@ namespace RentalKendaraan.Controllers
         /// GET: Customers/Edit/5
         /// </summary>
         /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
-        /// <returns>menampilkan data customer berdasarkan id yang diminta</returns>
+        /// <returns>menampilkan data id gender berdasarkan id yang diminta</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -237,7 +237,7 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// POST: Customers/Delete/5
+        /// Customers Delete Confirm
         /// </summary>
         /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
         /// <returns>mengembalikan ke halaman index</returns>

@@ -140,11 +140,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Genders/Edit/5
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Genders/Edit/5
+        /// <returns>menampilkan data genders berdasarkan id yang diminta</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -161,14 +160,12 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// POST: Genders/Edit/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="gender"></param>
-        /// <returns></returns>
-        // POST: Genders/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        [HttpPost]
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <param name="gender">berguna untuk binding data dari database ke form</param>
+        /// <returns>menampilkan hasil editing data genders</returns>
+        /// <remarks>method yang di gunakan untuk edit/mengubah data sesuai id/data yang di pilih</remarks>
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdGender,NamaGender")] Gender gender)
         {
@@ -201,11 +198,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Genders/Delete/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Genders/Delete/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan data customer berdasarkan id yang diminta</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -224,11 +220,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Genders Delete Confirm
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // POST: Genders/Delete/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>mengembalikan ke halaman index</returns>
+        /// <remarks>method yang di gunakan untuk menghapus/delete data sesuai id/data yang di pilih</remarks>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
