@@ -1,0 +1,96 @@
+﻿@model PaginatedList<RentalKendaraan.Models.Pengembalian>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Data Pengembalian</h1>
+
+<p>
+    <a asp-action="Create" type="button" class="btn btn-primary">Create New</a>
+
+</p>
+
+@using (Html.BeginForm("Index", "Pengembalians", FormMethod.Get))
+{
+    <p>
+        Kondisi : @Html.DropDownList("ktsd", "Pilih Kondisi Kendaraan")
+        Cari Data : @Html.TextBox("searchString")
+
+        <input type="submit" value="Filter" />
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @*@Html.DisplayName("Tanggal Pengembalian")*@
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["DateSortParm"]"
+                   asp-route-currentFilter="@ViewData["currentFilter"]">
+                    Tanggal Pengembalian
+                </a>
+            </th>
+            <th>
+                @*@Html.DisplayName("Denda")*@
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["DendaSortParm"]"
+                   asp-route-currentFilter="@ViewData["currentFilter"]">
+                    Denda
+                </a>
+            </th>
+            <th>
+                @Html.DisplayName("Kondisi")
+            </th>
+            <th>
+                @Html.DisplayName("Peminjaman")
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TglPengembalian)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Denda)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdKondisiNavigation.NamaKondisi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdPeminjamanNavigation.IdPeminjaman)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdPengembalian"><i class="fas fa-edit"></i></a> |
+                    <a asp-action="Details" asp-route-id="@item.IdPengembalian"><i class="fas fa-info-circle"></i></a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdPengembalian"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-outline-success @prevDisabled">
+    Previous
+</a>
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+   class="btn btn-success @nextDisabled">
+    Next
+</a>
