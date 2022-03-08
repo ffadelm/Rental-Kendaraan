@@ -15,7 +15,7 @@ namespace RentalKendaraan.Models
         /// <summary>
         /// method Customer
         /// </summary>
-        /// <remarks>untuk mendukung implementasi set dab menggunakan table hash milik class Peminjaman</remarks>
+        /// <remarks>untuk mendukung implementasi set dan menggunakan table hash milik class Peminjaman</remarks>
         public Customer()
         {
             Peminjamen = new HashSet<Peminjaman>();
