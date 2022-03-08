@@ -7,6 +7,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace RentalKendaraan.Models
 {
+    /// <summary>
+    /// main class db context
+    /// </summary>
+    /// <remarks>digunakan untuk get set data dari database</remarks>
     public partial class RentKendaraanContext : IdentityDbContext
     {
         public RentKendaraanContext()
@@ -19,17 +23,52 @@ namespace RentalKendaraan.Models
         {
         }
 
+        /// <summary>
+        /// mendeklarasikan variable Database Customer
+        /// </summary>
         public virtual DbSet<Customer> Customers { get; set; }
+
+        /// <summary>
+        /// mendeklarasikan variable Database Gender
+        /// </summary>
         public virtual DbSet<Gender> Genders { get; set; }
+
+        /// <summary>
+        /// mendeklarasikan variable Database Jaminan
+        /// </summary>
         public virtual DbSet<Jaminan> Jaminans { get; set; }
+
+        /// <summary>
+        /// mendeklarasikan variable Database Jenis Kendaraan
+        /// </summary>
         public virtual DbSet<JenisKendaraan> JenisKendaraans { get; set; }
+
+        /// <summary>
+        /// mendeklarasikan variable Database Kendaraan
+        /// </summary>
         public virtual DbSet<Kendaraan> Kendaraans { get; set; }
+
+        /// <summary>
+        /// mendeklarasikan variable Database Kondisi Kendaran
+        /// </summary>
         public virtual DbSet<KondisiKendaraan> KondisiKendaraans { get; set; }
+
+        /// <summary>
+        /// mendeklarasikan variable Database Peminjaman
+        /// </summary>
         public virtual DbSet<Peminjaman> Peminjamen { get; set; }
+
+        /// <summary>
+        /// mendeklarasikan variable Database Pengembalian
+        /// </summary>
         public virtual DbSet<Pengembalian> Pengembalians { get; set; }
 
         
 
+        /// <summary>
+        /// Model Builder digunakan untuk mengatur entitas dari data yang dimasukkan
+        /// </summary>
+        /// <param name="modelBuilder">sebagai parameter model builder</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
