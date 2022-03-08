@@ -10,34 +10,34 @@ using RentalKendaraan.Models;
 namespace RentalKendaraan.Controllers
 {
     /// <summary>
-    /// 
+    /// main class Controller Jaminan
     /// </summary>
+    /// <remarks>Controller di gunakan untuk menerima memproses dan mengirim Http request maupun response</remarks>
     public class JaminansController : Controller
     {
         /// <summary>
-        /// 
+        /// class level variable hanya dapat diatur dalam konstruktor dan tidak dapat diubah
         /// </summary>
         private readonly RentKendaraanContext _context;
 
         /// <summary>
-        /// 
+        /// menerapkan akses readonly dalam method JaminansController
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">menginisiaisi variable readonly</param>
         public JaminansController(RentKendaraanContext context)
         {
             _context = context;
         }
 
         /// <summary>
-        /// 
+        /// GET: Jaminans
         /// </summary>
-        /// <param name="ktsd"></param>
-        /// <param name="searchString"></param>
-        /// <param name="sortOrder"></param>
-        /// <param name="currentFilter"></param>
-        /// <param name="pageNumber"></param>
-        /// <returns></returns>
-        // GET: Jaminans
+        /// <param name="ktsd">ketersediaan data jaminan</param>
+        /// <param name="searchString">Membuat metode Search data</param>
+        /// <param name="sortOrder">Membuat metode pengurutan data</param>
+        /// <param name="currentFilter">Membuat filterisasi pada data</param>
+        /// <param name="pageNumber">Membuat Pagination pada data yang ditampilkan</param>
+        /// <returns>menampilkan semua data dari jaminan</returns>
         public async Task<IActionResult> Index(string ktsd, string searchString, string sortOrder, string currentFilter, int? pageNumber)
         {
             var ktsdList = new List<string>();
@@ -90,11 +90,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Jaminans/Details/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Jaminans/Details/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan hasil request detail data jaminan berdasarkan id yang diminta</returns>
+        /// <remarks>method yang digunakan untuk menampilakn detail data jaminan berdasarkan data yang dipilih</remarks>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -113,22 +113,20 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Jaminans/Create
         /// </summary>
-        /// <returns></returns>
-        // GET: Jaminans/Create
+        /// <returns>menampilkan data</returns>
         public IActionResult Create()
         {
             return View();
         }
 
         /// <summary>
-        /// 
+        /// POST: Jaminans/Create
         /// </summary>
-        /// <param name="jaminan"></param>
-        /// <returns></returns>
-        // POST: Jaminans/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        /// <param name="jaminan">digunakan sebagai binding data dari database</param>
+        /// <returns>menampilkan hasil input data</returns>
+        /// <remarks>method yang digunakan untuk add/menambahkan data baru</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdJaminan,NamaJaminan")] Jaminan jaminan)
@@ -143,11 +141,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Jaminans/Edit/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Jaminans/Edit/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan hasil data jaminan yang diminta berdasarkan id</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -164,14 +161,12 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// POST: Jaminans/Edit/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="jaminan"></param>
-        /// <returns></returns>
-        // POST: Jaminans/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <param name="jaminan">digunakan sebagai binding data dari database ke form</param>
+        /// <returns>menampilkan hasil editing data jaminan</returns>
+        /// <remarks>method yang di gunakan untuk edit/mengubah data sesuai id/data yang di pilih</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdJaminan,NamaJaminan")] Jaminan jaminan)
@@ -205,11 +200,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Jaminans/Delete/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Jaminans/Delete/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan hasil data jaminan berdasarkan id yang diminta</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -228,11 +222,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Jaminan Delete Confirm
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // POST: Jaminans/Delete/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>mengembalikan ke halaman index</returns>
+        /// <remarks>method yang di gunakan untuk menghapus/delete data sesuai id/data yang di pilih</remarks>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
