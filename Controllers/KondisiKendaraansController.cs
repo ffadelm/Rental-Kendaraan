@@ -92,7 +92,6 @@ namespace RentalKendaraan.Controllers
         /// <summary>
         /// GET: KondisiKendaraans/Details/5
         /// </summary>
-        /// <param name="id"></param>
         /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
         /// <returns>menampilkan hasil request detail data kondisi kendaraan berdasarkan id yang diminta</returns>
         /// <remarks>method yang digunakan untuk menampilakn detail data kondisi kendaraan berdasarkan data yang dipilih</remarks>
