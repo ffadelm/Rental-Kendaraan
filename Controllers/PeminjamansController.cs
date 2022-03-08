@@ -268,10 +268,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// cek ketersediaaan data peminjaman
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">membuat variable id</param>
+        /// <returns>menampilkan hasil pengecekan apakah tersedia id peminjaman</returns>
+        /// <remarks>method ini digunakan untuk mengcek ketersediaan data peminjaman berdasarkan id yang di tangkap dari database</remarks>
         private bool PeminjamanExists(int id)
         {
             return _context.Peminjamen.Any(e => e.IdPeminjaman == id);

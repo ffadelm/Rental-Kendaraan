@@ -236,10 +236,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// cek ketersediaaan data Gender
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">membuat variable id</param>
+        /// <returns>menampilkan hasil pengecekan apakah tersedia id Gender</returns>
+        /// <remarks>method ini digunakan untuk mengcek ketersediaan data gender berdasarkan id yang di tangkap dari database</remarks>
         private bool GenderExists(int id)
         {
             return _context.Genders.Any(e => e.IdGender == id);

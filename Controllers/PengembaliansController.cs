@@ -257,10 +257,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// cek ketersediaaan data pengembalian
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">membuat variable id</param>
+        /// <returns>menampilkan hasil pengecekan apakah tersedia id pengembalian</returns>
+        /// <remarks>method ini digunakan untuk mengcek ketersediaan data pengembalian berdasarkan id yang di tangkap dari database</remarks>
         private bool PengembalianExists(int id)
         {
             return _context.Pengembalians.Any(e => e.IdPengembalian == id);

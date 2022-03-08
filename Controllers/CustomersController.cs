@@ -253,10 +253,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// cek ketersediaaan data customer
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">membuat variable id</param>
+        /// <returns>menampilkan hasil pengecekan apakah tersedia id customer</returns>
+        /// <remarks>method ini digunakan untuk mengcek ketersediaan data customer berdasarkan id yang di tangkap dari database</remarks>
         private bool CustomerExists(int id)
         {
             return _context.Customers.Any(e => e.IdCustomer == id);

@@ -63,12 +63,13 @@ namespace RentalKendaraan.Models
         /// </summary>
         public virtual DbSet<Pengembalian> Pengembalians { get; set; }
 
-        
+
 
         /// <summary>
         /// Model Builder digunakan untuk mengatur entitas dari data yang dimasukkan
         /// </summary>
         /// <param name="modelBuilder">sebagai parameter model builder</param>
+        /// <remarks>membuat model untuk konteks dengan OnModelCreating(ModelBuilder)</remarks>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
@@ -280,6 +281,10 @@ namespace RentalKendaraan.Models
             OnModelCreatingPartial(modelBuilder);
         }
 
+        /// <summary>
+        /// Builder yang mendefinisikan model untuk konteks yang sedang dibuat.
+        /// </summary>
+        /// <param name="modelBuilder">menggunakan property ModelBuilder</param>
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

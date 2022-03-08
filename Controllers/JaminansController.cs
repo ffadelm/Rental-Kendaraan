@@ -238,10 +238,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// cek ketersediaaan data Jaminan
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">membuat variable id</param>
+        /// <returns>menampilkan hasil pengecekan apakah tersedia id jaminan</returns>
+        /// <remarks>method ini digunakan untuk mengcek ketersediaan data jaminan berdasarkan id yang di tangkap dari database</remarks>
         private bool JaminanExists(int id)
         {
             return _context.Jaminans.Any(e => e.IdJaminan == id);
