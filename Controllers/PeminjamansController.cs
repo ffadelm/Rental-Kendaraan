@@ -188,7 +188,7 @@ namespace RentalKendaraan.Controllers
         /// </summary>
         /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
         /// <param name="peminjaman">berguna untuk binding data dari database ke form</param>
-        /// <returns>menampilkan hasil editing data kendaraan</returns>
+        /// <returns>menampilkan hasil editing data peminjaman</returns>
         /// <remarks>method yang di gunakan untuk edit/mengubah data sesuai id/data yang di pilih</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
