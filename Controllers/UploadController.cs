@@ -11,38 +11,41 @@ using System.Threading.Tasks;
 namespace RentalKendaraan.Controllers
 {
     /// <summary>
-    /// 
+    /// Main Class Controller Upload
     /// </summary>
+    /// <remarks>class yang di gunakan untuk upload data seperti file-file</remarks>
     public class UploadController : Controller
     {
         /// <summary>
-        /// 
+        /// mengakses konstruktor file provider
         /// </summary>
         private readonly IFileProvider fileProvider; 
 
         /// <summary>
-        /// 
+        /// inject file provider
         /// </summary>
-        /// <param name="fileProvider"></param>
+        /// <param name="fileProvider">inisiasi class kontruktor file provider</param>
+        /// <remarks>membuat akses ke file</remarks>
         public UploadController(IFileProvider fileProvider) 
         { 
             this.fileProvider = fileProvider; 
         }
         
         /// <summary>
-        /// 
+        /// method index
         /// </summary>
-        /// <returns></returns>
+        /// <returns>mengembalikan hasil tampilan</returns>
         public IActionResult Index() 
         { 
             return View(); 
         }
 
         /// <summary>
-        /// 
+        /// method Upload file
         /// </summary>
-        /// <param name="file"></param>
-        /// <returns></returns>
+        /// <param name="file">inisiasi dari Ifromfile</param>
+        /// <returns>setelah di proses akan di kembalikan Files</returns>
+        /// <remarks>membuat method yang beruga mengakses file di end device user</remarks>
         [HttpPost]
         public async Task<IActionResult> UploadFile(IFormFile file)
         {
@@ -61,10 +64,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// method upload file
         /// </summary>
-        /// <param name="files"></param>
+        /// <param name="files">inisiasi list files</param>
         /// <returns></returns>
+        /// <remarks>membuat method yang beruga mengakses file di end device user dan di simpan di list</remarks>
         [HttpPost]
         public async Task<IActionResult> UploadFiles(List<IFormFile> files)
         {
@@ -86,10 +90,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// method upload via model
         /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
+        /// <param name="model">inisiasi konstruktor file input model</param>
+        /// <returns>setelah di proses akan di arahkan ke files</returns>
+        /// <remarks>menginput file yang user pilih melalui model</remarks>
         [HttpPost]
         public async Task<IActionResult> UploadFileViaModel(FileInputModel model)
         {
@@ -108,9 +113,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// method Files directory
         /// </summary>
-        /// <returns></returns>
+        /// <returns>menampilkan hasil dari model</returns>
+        /// <remarks>membuat direktori setelah file di upload</remarks>
         public IActionResult Files()
         {
             var model = new FilesViewModel();
@@ -126,10 +132,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// method download file
         /// </summary>
-        /// <param name="filename"></param>
-        /// <returns></returns>
+        /// <param name="filename">parameter untuk di gunakan di method ini</param>
+        /// <returns>memproses method File untuk mendapatkan path direktori</returns>
+        /// <remarks>method yang di guanakan untu mendowload fole yang user telah upload dan di simpan di direktori yag telah di tentukan</remarks>
         public async Task<IActionResult> Download(string filename)
         {
             if (filename == null) return Content("filename tidak terlihat");
@@ -146,10 +153,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// method type file
         /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
+        /// <param name="path">variable baru</param>
+        /// <returns>mengembalikan ke method Mime</returns>
+        /// <remarks>Mengembalikan tipe MIME untuk data. Ini adalah metode akses sederhana yang mengembalikan nilai atribut mimeType.</remarks>
         private string GetContentType(string path)
         {
             var types = GetMimeTypes();
@@ -158,9 +166,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// method tipe file
         /// </summary>
-        /// <returns></returns>
+        /// <returns>data file yang dapat di upload </returns>
+        /// <remarks>method yang digunakan untuk membatasi tipe file yang dapat di upload</remarks>
         private Dictionary<string, string> GetMimeTypes()
         {
             return new Dictionary<string, string>
