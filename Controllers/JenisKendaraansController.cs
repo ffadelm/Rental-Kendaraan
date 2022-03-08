@@ -203,7 +203,7 @@ namespace RentalKendaraan.Controllers
         /// GET: JenisKendaraans/Delete/5
         /// </summary>
         /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
-        /// <returns>menampilkan hasil data jaminan berdasarkan id yang diminta</returns>
+        /// <returns>menampilkan hasil data jenis kendaraan berdasarkan id yang diminta</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
