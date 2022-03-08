@@ -222,7 +222,7 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// Jaminan Delete Confirm
+        /// Jaminan Delete Confirm 
         /// </summary>
         /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
         /// <returns>mengembalikan ke halaman index</returns>
