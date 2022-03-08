@@ -10,34 +10,34 @@ using RentalKendaraan.Models;
 namespace RentalKendaraan.Controllers
 {
     /// <summary>
-    /// 
+    /// main class Controller Kendaraan
     /// </summary>
+    /// <remarks>Controller di gunakan untuk menerima memproses dan mengirim Http request maupun response</remarks>
     public class KendaraansController : Controller
     {
         /// <summary>
-        /// 
+        /// class level variable hanya dapat diatur dalam konstruktor dan tidak dapat diubah
         /// </summary>
         private readonly RentKendaraanContext _context;
 
         /// <summary>
-        /// 
+        /// menerapkan akses readonly dalam method KendaraanController
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">menginisiaisi variable readonly</param>
         public KendaraansController(RentKendaraanContext context)
         {
             _context = context;
         }
 
         /// <summary>
-        /// 
+        /// GET: Kendaraans
         /// </summary>
-        /// <param name="ktsd"></param>
-        /// <param name="searchString"></param>
-        /// <param name="sortOrder"></param>
-        /// <param name="currentFilter"></param>
-        /// <param name="pageNumber"></param>
-        /// <returns></returns>
-        // GET: Kendaraans
+        /// <param name="ktsd">ketersediaan data kendaraan</param>
+        /// <param name="searchString">Membuat metode Search data</param>
+        /// <param name="sortOrder">Membuat metode pengurutan data</param>
+        /// <param name="currentFilter">Membuat filterisasi pada data</param>
+        /// <param name="pageNumber">Membuat Pagination pada data yang ditampilkan</param>
+        /// <returns>menampilkan semua data dari kendaraan</returns>
         public async Task<IActionResult> Index(string ktsd, string searchString, string sortOrder, string currentFilter, int? pageNumber)
         {
             var ktsdList = new List<string>();
@@ -97,11 +97,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Kendaraans/Details/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Kendaraans/Details/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan hasil request detail data kendaraan berdasarkan id yang diminta</returns>
+        /// <remarks>method yang digunakan untuk menampilakn detail data kendaraan berdasarkan data yang dipilih</remarks>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -121,10 +121,9 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Kendaraans/Create
         /// </summary>
-        /// <returns></returns>
-        // GET: Kendaraans/Create
+        /// <returns>menampilkan data id jenis kendaraan</returns>
         public IActionResult Create()
         {
             ViewData["IdJenisKendaraan"] = new SelectList(_context.JenisKendaraans, "IdJenisKendaraan", "IdJenisKendaraan");
@@ -132,13 +131,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// POST: Kendaraans/Create
         /// </summary>
-        /// <param name="kendaraan"></param>
-        /// <returns></returns>
-        // POST: Kendaraans/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <param name="kendaraan">berguna untuk binding data dari database</param>
+        /// <returns>menampilkan data hasil input data</returns>
+        /// <remarks>method yang di gunakan untuk add/menambahkan data baru</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdKendaraan,NamaKendaraan,NoPolisi,NoStnk,IdJenisKendaraan,Ketersediaan")] Kendaraan kendaraan)
@@ -154,11 +151,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Kendaraans/Edit/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Kendaraans/Edit/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan data serta id jenis kendaraan berdasarkan id yang diminta</returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -176,14 +172,12 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// POST: Kendaraans/Edit/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="kendaraan"></param>
-        /// <returns></returns>
-        // POST: Kendaraans/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <param name="kendaraan">berguna untuk binding data dari database ke form</param>
+        /// <returns>menampilkan hasil editing data kendaraan</returns>
+        /// <remarks>method yang di gunakan untuk edit/mengubah data sesuai id/data yang di pilih</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdKendaraan,NamaKendaraan,NoPolisi,NoStnk,IdJenisKendaraan,Ketersediaan")] Kendaraan kendaraan)
@@ -218,11 +212,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Kendaraans/Delete/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Kendaraans/Delete/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan data kendaraan berdasarkan id yang diminta</returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -242,11 +235,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Kendaraan Delete Confirm
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // POST: Kendaraans/Delete/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>mengembalikan ke halaman index</returns>
+        /// <remarks>method yang di gunakan untuk menghapus/delete data sesuai id/data yang di pilih</remarks>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
