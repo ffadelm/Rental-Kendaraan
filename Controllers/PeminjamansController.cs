@@ -9,34 +9,37 @@ using RentalKendaraan.Models;
 using Microsoft.AspNetCore.Authorization;
 
 namespace RentalKendaraan.Controllers
-{
+
+{   /// <summary>
+    /// Main class controller peminjaman
+    /// </summary>
+    /// <remarks>Controller di gunakan untuk menerima memproses dan mengirim Http request maupun response</remarks>
     public class PeminjamansController : Controller
     {
         /// <summary>
-        /// 
+        /// class level variable hanya dapat diatur dalam konstruktor dan tidak dapat diubah
         /// </summary>
         private readonly RentKendaraanContext _context;
 
         /// <summary>
-        /// 
+        /// menerapkan akses readonly dalam method peminjaman
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">menginisiaisi variable readonly</param>
         public PeminjamansController(RentKendaraanContext context)
         {
             _context = context;
         }
 
         /// <summary>
-        /// 
+        /// GET: Peminjaman 
         /// </summary>
-        /// <param name="ktsd"></param>
-        /// <param name="searchString"></param>
-        /// <param name="sortOrder"></param>
-        /// <param name="currentFilter"></param>
-        /// <param name="pageNumber"></param>
-        /// <returns></returns>
+        /// <param name="ktsd">ketersediaan data jenis peminjaman</param>
+        /// <param name="searchString">Membuat metode Search data</param>
+        /// <param name="sortOrder">Membuat metode pengurutan data</param>
+        /// <param name="currentFilter">Membuat filterisasi pada data</param>
+        /// <param name="pageNumber">Membuat Pagination pada data yang ditampilkan</param>
+        /// <returns>menampilkan semua data kondisi kendaraan</returns>
         [Authorize(Policy ="readonlypolicy")] //tambahan
-        // GET: Peminjamen
         public async Task<IActionResult> Index(string ktsd, string searchString, string sortOrder, string currentFilter, int? pageNumber)
         {
             var ktsdList = new List<string>();
@@ -96,11 +99,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Peminjamen/Details/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // GET: Peminjamen/Details/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan hasil request detail data peminjaman berdasarkan id yang diminta</returns>
+        /// <remarks>method yang digunakan untuk menampilakn detail data peminjaman berdasarkan data yang dipilih</remarks>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -122,11 +125,10 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Peminjaman/Create
         /// </summary>
-        /// <returns></returns>
+        /// <returns>menampilkan data customer, jaminan dan kendaraan</returns>
         [Authorize(Policy = "writepolicy")] //tambahan
-        // GET: Peminjamen/Create
         public IActionResult Create()
         {
             ViewData["IdCustomer"] = new SelectList(_context.Customers, "IdCustomer", "IdCustomer");
@@ -136,13 +138,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// POST: Peminjaman/Create
         /// </summary>
-        /// <param name="peminjaman"></param>
-        /// <returns></returns>
-        // POST: Peminjamen/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <param name="peminjaman">berguna untuk binding data dari database</param>
+        /// <returns>menampilkan data hasil input data</returns>
+        /// <remarks>method yang di gunakan untuk add/menambahkan data baru</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdPeminjaman,TglPeminjaman,IdKendaraan,IdCustomer,IdJaminan,Biaya")] Peminjaman peminjaman)
@@ -160,12 +160,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Peminjaman/Edit/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan data serta data customer, jaminana, dan kendaraan berdasarkan id yang diminta</returns>
         [Authorize(Policy = "editpolicy")]
-        // GET: Peminjamen/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -185,14 +184,12 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// POST: Peminjaman/Edit/5 
         /// </summary>
-        /// <param name="id"></param>
-        /// <param name="peminjaman"></param>
-        /// <returns></returns>
-        // POST: Peminjamen/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <param name="peminjaman">berguna untuk binding data dari database ke form</param>
+        /// <returns>menampilkan hasil editing data kendaraan</returns>
+        /// <remarks>method yang di gunakan untuk edit/mengubah data sesuai id/data yang di pilih</remarks>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdPeminjaman,TglPeminjaman,IdKendaraan,IdCustomer,IdJaminan,Biaya")] Peminjaman peminjaman)
@@ -229,12 +226,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// GET: Peminjamen/Delete/5
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>menampilkan data peminjaman berdasarkan id yang diminta</returns>
         [Authorize(Policy = "deletepolicy")]
-        // GET: Peminjamen/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -256,11 +252,11 @@ namespace RentalKendaraan.Controllers
         }
 
         /// <summary>
-        /// 
+        /// konfirmasi delete data peminjaman 
         /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        // POST: Peminjamen/Delete/5
+        /// <param name="id">parameter ini digunakan untuk menangkap id yang di kirim dari http request</param>
+        /// <returns>mengembalikan ke halaman index</returns>
+        /// <remarks>method yang di gunakan untuk menghapus/delete data sesuai id/data yang di pilih</remarks>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
